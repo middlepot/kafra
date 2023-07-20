@@ -24,10 +24,14 @@
 
 -->
 
-<title>⠕⠑⠽ ⠽⠏⠌⠍⠙</title>
+<title>향수의</title>
+
+<script language= "JavaScript">
+location.href="https://kafra.pooftie.me"
+</script>
 
 <head>
-<link rel="shortcut icon" href="https://i.imgur.com/0FYKv1x.gif">
+<link rel="shortcut icon" href="https://i.imgur.com/cRc2lWM.gif">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <meta name="robots" content="nosnippet">
 <meta name="robots" content="max-snippet:0">
@@ -103,6 +107,7 @@ a:hover {cursor: url(https://i.imgur.com/WZEBPhX.png), progress;
  ::-moz-selection {text-shadow: 0 0 2px #ddd3ce;color:#afa7a3}
 }
 </style>
+
 </head>
 
 <style>
@@ -140,13 +145,143 @@ html {
 
 <div id="everything">
 
-<body style="background-color:#f9f9f9; font-family: Verdana; font-size: 10px;">
+<body style="background-color:#fcf9f7; font-family: Verdana; font-size: 10px;">
 <body oncontextmenu="return false" onMouseOver="window.status='..message perso .. '; return true;" style="overflow-y:hidden; overflow-x:hidden;">
-<img ondragstart="return false" style="z-index: -10; position: fixed; left: 125px; top: 0px;" src="https://i.imgur.com/OpDQ4SB.png">
+<img ondragstart="return false" style="z-index: -10; position: fixed; left: 125px; top: 0px;" src="https://i.imgur.com/3AwiQKk.png">
 
-<a href="/lutie"><img style="position: fixed; left: 245px; top: 340px;" src="https://i.imgur.com/iOl6xLu.gif"></a>
-<a href="/yggdrasil"><img style="position: fixed; left: 585px; top: 300px;" src="https://i.imgur.com/He7LhnK.gif"></a>
-<a href="/niflheim"><img style="position: fixed; left: 935px; top: 300px;" src="https://i.imgur.com/9m9KJYz.gif"></a>
+<a href="/welcome"><img style="position: fixed; z-index:5; left: 400px; top: 400px;" src="https://i.imgur.com/YTxz1Yg.png"></a>
+
+<img style="position: fixed; left: 340px; top: 300px;" src="https://i.imgur.com/Cgf8cUM.gif">
+<img style="position: fixed; z-index:0; left: 332px; top: 375px;" src="https://i.imgur.com/rMB2H0C.gif">
+
+<audio id="musict" preload="true">
+  <source src="https://file.pooftie.me/a/08.mp3" type="audio/mpeg">
+</audio>
+<div id="audioplayer">
+ <button id="pButton" class="play"></button>
+  <div id="timeline">    
+      <div id="playhead"></div>
+  </div>
+</div>
+
+
+
+<style>
+#pButton{
+position: fixed; left: 590px; top: 125px;
+    height:39px; 
+    width: 26px;
+    border: none;
+    background-repeat: no-repeat;
+    outline:none;
+    cursor: url(https://i.imgur.com/WZEBPhX.png), progress;
+}
+
+.play{background: url('https://i.imgur.com/Zt27XX2.gif') ;}
+.pause{background: url('https://i.imgur.com/Zt27XX2.gif') ;}
+</style>
+
+
+
+
+
+
+<script>
+var music = document.getElementById('musict');
+var duration = music.duration;
+var pButton = document.getElementById('pButton');
+var playhead = document.getElementById('playhead');
+var timeline = document.getElementById('timeline');
+
+var timelineWidth = timeline.offsetWidth - playhead.offsetWidth;
+
+pButton.addEventListener("click", play);
+
+music.addEventListener("timeupdate", timeUpdate, false);
+
+timeline.addEventListener("click", function(event) {
+    moveplayhead(event);
+    music.currentTime = duration * clickPercent(event);
+}, false);
+
+function clickPercent(event) {
+    return (event.clientX - getPosition(timeline)) / timelineWidth;
+}
+
+playhead.addEventListener('mousedown', mouseDown, false);
+window.addEventListener('mouseup', mouseUp, false);
+
+
+var onplayhead = false;
+
+function mouseDown() {
+    onplayhead = true;
+    window.addEventListener('mousemove', moveplayhead, true);
+    music.removeEventListener('timeupdate', timeUpdate, false);
+}
+
+function mouseUp(event) {
+    if (onplayhead == true) {
+        moveplayhead(event);
+        window.removeEventListener('mousemove', moveplayhead, true);
+        music.currentTime = duration * clickPercent(event);
+        music.addEventListener('timeupdate', timeUpdate, false);
+    }
+    onplayhead = false;
+}
+function moveplayhead(event) {
+    var newMargLeft = event.clientX - getPosition(timeline);
+
+    if (newMargLeft >= 0 && newMargLeft <= timelineWidth) {
+        playhead.style.marginLeft = newMargLeft + "px";
+    }
+    if (newMargLeft < 0) {
+        playhead.style.marginLeft = "0px";
+    }
+    if (newMargLeft > timelineWidth) {
+        playhead.style.marginLeft = timelineWidth + "px";
+    }
+}
+
+function timeUpdate() {
+    var playPercent = timelineWidth * (music.currentTime / duration);
+    playhead.style.marginLeft = playPercent + "px";
+    if (music.currentTime == duration) {
+        pButton.className = "";
+        pButton.className = "play";
+    }
+}
+
+function play() {
+    if (music.paused) {
+        music.play();
+        pButton.className = "";
+        pButton.className = "pause";
+    } else { 
+        music.pause();
+        pButton.className = "";
+        pButton.className = "play";
+    }
+}
+
+music.addEventListener("canplaythrough", function() {
+    duration = music.duration;
+}, false);
+
+function getPosition(el) {
+    return el.getBoundingClientRect().left;
+}
+</script>
+
+
+<a href="https://middlepot.com" target="_blank"><img style="position: fixed; left: 600px; top: 150px;" src="https://i.imgur.com/Lgc3Pbd.gif"></a>
+
+<img style="position: fixed; left: 270px; top: 370px;" src="https://i.imgur.com/RGrnj5v.gif">
+<img style="position: fixed; left: 470px; top: 300px;" src="https://i.imgur.com/uAwNmxG.gif">
+
+<img style="position: fixed; left: 800px; top: 530px;" src="https://i.imgur.com/34Qce8W.gif">
+<img style="position: fixed; left: 680px; top: 150px;" src="https://i.imgur.com/ttOQ0jU.gif">
+<img style="position: fixed; left: 300px; top: 100px;" src="https://i.imgur.com/YdzCgyV.gif">
 
 </body>
 </body>
